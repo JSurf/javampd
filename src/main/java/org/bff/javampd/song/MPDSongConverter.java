@@ -5,12 +5,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
 /**
  * @author bill
  */
 public class MPDSongConverter implements SongConverter {
 
     private static String delimitingPrefix = SongProcessor.getDelimitingPrefix();
+    
+    @Inject
+    public MPDSongConverter() {
+		super();
+	}
 
     @Override
     public List<MPDSong> convertResponseToSong(List<String> list) {

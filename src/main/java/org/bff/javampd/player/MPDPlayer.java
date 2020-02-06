@@ -1,6 +1,6 @@
 package org.bff.javampd.player;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.bff.javampd.audioinfo.MPDAudioInfo;
 import org.bff.javampd.command.CommandExecutor;
 import org.bff.javampd.server.ServerStatus;

@@ -1,5 +1,7 @@
 package org.bff.javampd.monitor;
 
+import javax.inject.Inject;
+
 import org.bff.javampd.server.MPDProperties;
 
 /**
@@ -9,7 +11,11 @@ import org.bff.javampd.server.MPDProperties;
  * @author bill
  */
 public class MonitorProperties extends MPDProperties {
-
+	@Inject
+	public MonitorProperties() {
+	  super();
+	}
+	
     private enum Delay {
         OUTPUT("monitor.output.multiplier"),
         CONNECTION("monitor.connection.multiplier"),

@@ -1,12 +1,20 @@
 package org.bff.javampd.song;
 
+import javax.inject.Inject;
+
 import org.bff.javampd.server.MPDProperties;
 
 /**
  * @author bill
  */
 public class SearchProperties extends MPDProperties {
-    private enum Command {
+
+   @Inject
+   public SearchProperties() {
+     super();
+   } 
+	
+   private enum Command {
         FIND("db.find"),
         SEARCH("db.search"),
         WINDOW("db.window");

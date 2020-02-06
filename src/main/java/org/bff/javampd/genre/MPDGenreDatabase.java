@@ -1,6 +1,6 @@
 package org.bff.javampd.genre;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.bff.javampd.database.TagLister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

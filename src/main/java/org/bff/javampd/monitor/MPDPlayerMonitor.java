@@ -1,6 +1,7 @@
 package org.bff.javampd.monitor;
 
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.bff.javampd.player.PlayerBasicChangeEvent;
 import org.bff.javampd.player.PlayerBasicChangeListener;
 import org.bff.javampd.server.Status;
@@ -20,6 +21,7 @@ public class MPDPlayerMonitor extends MPDBitrateMonitor implements PlayerMonitor
     private List<PlayerBasicChangeListener> playerListeners;
     private String state;
 
+    @Inject
     MPDPlayerMonitor() {
         this.playerListeners = new ArrayList<>();
         state = "";

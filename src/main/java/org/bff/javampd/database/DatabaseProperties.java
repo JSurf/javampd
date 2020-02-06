@@ -1,11 +1,19 @@
 package org.bff.javampd.database;
 
+import javax.inject.Inject;
+
 import org.bff.javampd.server.MPDProperties;
 
 /**
  * @author bill
  */
 public class DatabaseProperties extends MPDProperties {
+	
+	@Inject
+	public DatabaseProperties() {
+	   super();
+	}
+	
     private enum Command {
         FIND("db.find"),
         LIST("db.list.tag"),

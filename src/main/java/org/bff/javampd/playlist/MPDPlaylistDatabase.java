@@ -1,6 +1,6 @@
 package org.bff.javampd.playlist;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.bff.javampd.command.CommandExecutor;
 import org.bff.javampd.database.DatabaseProperties;
 import org.bff.javampd.database.TagLister;

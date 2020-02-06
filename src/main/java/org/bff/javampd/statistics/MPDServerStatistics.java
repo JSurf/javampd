@@ -1,6 +1,6 @@
 package org.bff.javampd.statistics;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.bff.javampd.Clock;
 import org.bff.javampd.command.CommandExecutor;
 import org.bff.javampd.server.ServerProperties;

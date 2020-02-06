@@ -4,7 +4,7 @@
     <groupId>net.thejavashop</groupId>
     <artifactId>javampd</artifactId>
     <packaging>jar</packaging>
-    <version>6.0.0</version>
+    <version>6.0.0d</version>
     <name>JavaMPD</name>
     <description>A Java API for controlling the Music Player Daemon (MPD)</description>
     <url>https://github.com/finnyb/javampd/</url>
@@ -78,7 +78,14 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                </configuration>
+			        <annotationProcessorPaths>
+			          <path>
+			            <groupId>com.google.dagger</groupId>
+			            <artifactId>dagger-compiler</artifactId>
+			            <version>2.26</version>
+			          </path>
+			        </annotationProcessorPaths>
+                 </configuration>                
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -136,8 +143,8 @@
                 <version>2.17</version>
                 <configuration>
                     <configLocation>src/build-tools/checkstyle.xml</configLocation>
-                    <failsOnError>true</failsOnError>
-                    <failOnViolation>true</failOnViolation>
+                    <failsOnError>false</failsOnError>
+                    <failOnViolation>false</failOnViolation>
                     <consoleOutput>true</consoleOutput>
                     <logViolationsToConsole>true</logViolationsToConsole>
                     <linkXRef>false</linkXRef>
@@ -200,6 +207,37 @@
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.7.9</version>
                 </plugin>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+                <plugin>
+                	<groupId>org.eclipse.m2e</groupId>
+                	<artifactId>lifecycle-mapping</artifactId>
+                	<version>1.0.0</version>
+                	<configuration>
+                		<lifecycleMappingMetadata>
+                			<pluginExecutions>
+                				<pluginExecution>
+                					<pluginExecutionFilter>
+                						<groupId>
+                							org.apache.maven.plugins
+                						</groupId>
+                						<artifactId>
+                							maven-checkstyle-plugin
+                						</artifactId>
+                						<versionRange>
+                							[2.17,)
+                						</versionRange>
+                						<goals>
+                							<goal>checkstyle</goal>
+                						</goals>
+                					</pluginExecutionFilter>
+                					<action>
+                						<ignore></ignore>
+                					</action>
+                				</pluginExecution>
+                			</pluginExecutions>
+                		</lifecycleMappingMetadata>
+                	</configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -209,11 +247,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
         </dependency>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>4.1.0</version>
-        </dependency>
+<dependency>
+  <groupId>com.google.dagger</groupId>
+  <artifactId>dagger</artifactId>
+  <version>2.26</version>
+</dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

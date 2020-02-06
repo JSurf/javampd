@@ -1,6 +1,5 @@
 package org.bff.javampd;
 
-import com.google.inject.AbstractModule;
 import org.bff.javampd.admin.Admin;
 import org.bff.javampd.admin.MPDAdmin;
 import org.bff.javampd.album.AlbumConverter;
@@ -22,25 +21,36 @@ import org.bff.javampd.song.SongConverter;
 import org.bff.javampd.statistics.MPDServerStatistics;
 import org.bff.javampd.statistics.ServerStatistics;
 
+import dagger.Binds;
+import dagger.Module;
+
 /**
  * Initializes the DI bindings
  *
  * @author bill
  */
-public class MPDModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(Admin.class).to(MPDAdmin.class);
-        bind(Player.class).to(MPDPlayer.class);
-        bind(Playlist.class).to(MPDPlaylist.class);
-        bind(ServerStatus.class).to(MPDServerStatus.class);
-        bind(ServerStatistics.class).to(MPDServerStatistics.class);
-        bind(Player.class).to(MPDPlayer.class);
-        bind(CommandExecutor.class).to(MPDCommandExecutor.class);
-        bind(TagLister.class).to(MPDTagLister.class);
-        bind(SongConverter.class).to(MPDSongConverter.class);
-        bind(AlbumConverter.class).to(MPDAlbumConverter.class);
-        bind(ArtworkFinder.class).to(MPDArtworkFinder.class);
-        bind(Clock.class).to(MPDSystemClock.class);
-    }
+@Module
+public abstract class MPDModule {
+	    @Binds 
+        public abstract Admin bindAdmin(MPDAdmin obj);
+	    @Binds 
+        public abstract Player bindPlayer(MPDPlayer obj);
+	    @Binds 
+        public abstract Playlist bindPlaylist(MPDPlaylist obj);
+	    @Binds 
+        public abstract ServerStatus bindServerStatus(MPDServerStatus obj);
+	    @Binds 
+        public abstract ServerStatistics bindServerStatistics(MPDServerStatistics obj);
+	    @Binds 
+        public abstract CommandExecutor bindCommandExecutor(MPDCommandExecutor obj);
+	    @Binds 
+        public abstract TagLister bindTagLister(MPDTagLister obj);
+	    @Binds 
+        public abstract SongConverter bindSongConverter(MPDSongConverter obj);
+	    @Binds 
+        public abstract AlbumConverter bindAlbumConverter(MPDAlbumConverter obj);
+	    @Binds 
+        public abstract ArtworkFinder bindArtworkFinder(MPDArtworkFinder obj);
+	    @Binds 
+        public abstract Clock bindClock(MPDSystemClock obj);
 }

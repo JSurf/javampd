@@ -1,6 +1,7 @@
 package org.bff.javampd.monitor;
 
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.bff.javampd.server.ConnectionChangeEvent;
 import org.bff.javampd.server.ConnectionChangeListener;
 import org.bff.javampd.server.Server;
@@ -14,6 +15,7 @@ public class MPDConnectionMonitor implements ConnectionMonitor {
     private Server server;
     private boolean connected = true;
 
+    @Inject
     MPDConnectionMonitor() {
         this.connectionListeners = new ArrayList<>();
     }

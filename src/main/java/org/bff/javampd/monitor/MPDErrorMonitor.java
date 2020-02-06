@@ -1,6 +1,7 @@
 package org.bff.javampd.monitor;
 
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.bff.javampd.server.ErrorEvent;
 import org.bff.javampd.server.ErrorListener;
 import org.bff.javampd.server.Status;
@@ -13,6 +14,7 @@ public class MPDErrorMonitor implements ErrorMonitor {
     private String error;
     private List<ErrorListener> errorListeners;
 
+    @Inject
     MPDErrorMonitor() {
         this.errorListeners = new ArrayList<>();
     }

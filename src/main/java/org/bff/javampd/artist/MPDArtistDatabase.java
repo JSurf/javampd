@@ -1,6 +1,6 @@
 package org.bff.javampd.artist;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.bff.javampd.database.TagLister;
 import org.bff.javampd.genre.MPDGenre;
 import org.slf4j.Logger;

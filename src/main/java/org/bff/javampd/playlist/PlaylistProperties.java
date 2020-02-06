@@ -1,11 +1,18 @@
 package org.bff.javampd.playlist;
 
+import javax.inject.Inject;
+
 import org.bff.javampd.server.MPDProperties;
 
 /**
  * @author bill
  */
 public class PlaylistProperties extends MPDProperties {
+	
+	@Inject
+	public PlaylistProperties() {
+		super();
+	}
 
     private enum Command {
         ADD("playlist.add"),

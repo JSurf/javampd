@@ -1,6 +1,7 @@
 package org.bff.javampd.command;
 
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.bff.javampd.server.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,7 @@ public class MPDCommandExecutor implements CommandExecutor {
      * You <b>MUST</b> call {@link #setMpd} before
      * making any calls to the server
      */
+    @Inject
     public MPDCommandExecutor() {
         serverProperties = new ServerProperties();
     }

@@ -1,9 +1,16 @@
 package org.bff.javampd.admin;
 
+import javax.inject.Inject;
+
 import org.bff.javampd.server.MPDProperties;
 
 public class AdminProperties extends MPDProperties {
-
+	
+	@Inject
+	public AdminProperties() {
+	   super();
+	}
+	
     private enum Command {
         KILL("admin.kill"),
         REFRESH("admin.refresh"),

@@ -5,9 +5,10 @@
  */
 package org.bff.javampd.server;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.Singleton;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import org.bff.javampd.MPDDatabaseModule;
 import org.bff.javampd.MPDException;
 import org.bff.javampd.MPDModule;
@@ -24,6 +25,8 @@ import org.bff.javampd.song.SongSearcher;
 import org.bff.javampd.statistics.ServerStatistics;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import dagger.Component;
 
 import java.net.InetAddress;
 
@@ -212,28 +215,76 @@ public class MPD implements Server {
         return this.artworkFinder;
     }
 
+    @Component(modules = { MPDModule.class, MPDDatabaseModule.class, MPDMonitorModule.class })
+    @Singleton
+    public interface MPDBuilder {
+    	BuilderInjects build();
+    }
+    
+    public static class BuilderInjects {
+    	
+        @Inject
+        ServerProperties serverProperties;
+        @Inject
+        CommandExecutor commandExecutor;
+        @Inject
+        Player player;
+        @Inject
+        Playlist playlist;
+        @Inject
+        Admin admin;
+        @Inject
+        ServerStatistics serverStatistics;
+        @Inject
+        ServerStatus serverStatus;
+        @Inject
+        StandAloneMonitor standAloneMonitor;
+        @Inject
+        MusicDatabase musicDatabase;
+        @Inject
+        SongSearcher songSearcher;
+        @Inject
+        ArtworkFinder artworkFinder;
+        @Inject
+        ConnectionMonitor connectionMonitor;
+
+        @Inject
+        public BuilderInjects() {        	
+        }
+    }    
     public static class Builder {
         private int port = DEFAULT_PORT;
         private String server = DEFAULT_SERVER;
         private int timeout = DEFAULT_TIMEOUT;
         private String password;
-        private ServerProperties serverProperties;
-        private CommandExecutor commandExecutor;
-        private Player player;
-        private Playlist playlist;
-        private Admin admin;
-        private ServerStatistics serverStatistics;
-        private ServerStatus serverStatus;
-        private StandAloneMonitor standAloneMonitor;
-        private MusicDatabase musicDatabase;
-        private Injector injector;
-        private SongSearcher songSearcher;
-        private ArtworkFinder artworkFinder;
+        
+        ServerProperties serverProperties;
+        CommandExecutor commandExecutor;
+        Player player;
+        Playlist playlist;
+        Admin admin;
+        ServerStatistics serverStatistics;
+        ServerStatus serverStatus;
+        StandAloneMonitor standAloneMonitor;
+        MusicDatabase musicDatabase;
+        SongSearcher songSearcher;
+        ArtworkFinder artworkFinder;
+        ConnectionMonitor connectionMonitor;
 
         public Builder() {
-            injector = Guice.createInjector(new MPDModule(), new MPDDatabaseModule(), new MPDMonitorModule());
-            bind(injector);
-            bindMonitorAndRelay(injector);
+        	BuilderInjects injects = DaggerMPD_MPDBuilder.create().build();
+            serverProperties = injects.serverProperties;
+            commandExecutor = injects.commandExecutor;
+            player = injects.player;
+            playlist = injects.playlist;
+            admin = injects.admin;
+            serverStatistics = injects.serverStatistics;
+            serverStatus = injects.serverStatus;
+            standAloneMonitor = injects.standAloneMonitor;
+            musicDatabase = injects.musicDatabase;
+            songSearcher = injects.songSearcher;
+            artworkFinder = injects.artworkFinder;
+            connectionMonitor = injects.connectionMonitor;
         }
 
         public Builder server(String server) {
@@ -258,25 +309,8 @@ public class MPD implements Server {
 
         public MPD build() {
             MPD mpd = new MPD(this);
-            injector.getInstance(ConnectionMonitor.class).setServer(mpd);
+            connectionMonitor.setServer(mpd);
             return mpd;
-        }
-
-        private void bind(Injector injector) {
-            this.serverProperties = injector.getInstance(ServerProperties.class);
-            this.player = injector.getInstance(Player.class);
-            this.playlist = injector.getInstance(Playlist.class);
-            this.admin = injector.getInstance(Admin.class);
-            this.serverStatistics = injector.getInstance(ServerStatistics.class);
-            this.serverStatus = injector.getInstance(ServerStatus.class);
-            this.musicDatabase = injector.getInstance(MusicDatabase.class);
-            this.songSearcher = injector.getInstance(SongSearcher.class);
-            this.commandExecutor = injector.getInstance(CommandExecutor.class);
-            this.artworkFinder = injector.getInstance(ArtworkFinder.class);
-        }
-
-        private void bindMonitorAndRelay(Injector injector) {
-            this.standAloneMonitor = injector.getInstance(StandAloneMonitor.class);
         }
     }
 }

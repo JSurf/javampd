@@ -1,6 +1,7 @@
 package org.bff.javampd.monitor;
 
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.bff.javampd.player.TrackPositionChangeEvent;
 import org.bff.javampd.player.TrackPositionChangeListener;
 import org.bff.javampd.server.Status;
@@ -14,6 +15,7 @@ public class MPDTrackMonitor implements TrackMonitor {
     private long oldPos;
     private long elapsedTime;
 
+    @Inject
     MPDTrackMonitor() {
         this.trackListeners = new ArrayList<>();
     }

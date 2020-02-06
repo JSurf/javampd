@@ -1,6 +1,6 @@
 package org.bff.javampd.file;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.bff.javampd.MPDException;
 import org.bff.javampd.command.CommandExecutor;
 import org.bff.javampd.database.DatabaseProperties;

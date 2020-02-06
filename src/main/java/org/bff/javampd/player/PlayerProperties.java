@@ -1,5 +1,7 @@
 package org.bff.javampd.player;
 
+import javax.inject.Inject;
+
 import org.bff.javampd.server.MPDProperties;
 
 /**
@@ -7,7 +9,11 @@ import org.bff.javampd.server.MPDProperties;
  */
 public class PlayerProperties extends MPDProperties {
 
-    private enum Command {
+    @Inject
+	public PlayerProperties() {
+    	super();
+    }
+	private enum Command {
         XFADE("player.crossfade"),
         CURRSONG("player.currentsong"),
         NEXT("player.next"),

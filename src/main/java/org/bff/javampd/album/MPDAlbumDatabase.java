@@ -1,6 +1,6 @@
 package org.bff.javampd.album;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import org.bff.javampd.artist.MPDArtist;
 import org.bff.javampd.database.TagLister;
 import org.bff.javampd.genre.MPDGenre;

@@ -1,6 +1,7 @@
 package org.bff.javampd.monitor;
 
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.bff.javampd.player.BitrateChangeEvent;
 import org.bff.javampd.player.BitrateChangeListener;
 import org.bff.javampd.server.Status;
@@ -15,6 +16,7 @@ public class MPDBitrateMonitor extends MPDVolumeMonitor implements BitrateMonito
 
     private List<BitrateChangeListener> bitrateListeners;
 
+    @Inject
     MPDBitrateMonitor() {
         bitrateListeners = new ArrayList<>();
     }

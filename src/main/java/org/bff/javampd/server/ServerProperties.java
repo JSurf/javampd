@@ -1,11 +1,18 @@
 package org.bff.javampd.server;
 
+import javax.inject.Inject;
+
 /**
  * @author bill
  */
 public class ServerProperties extends MPDProperties {
-
-    private enum Command {
+    
+	@Inject
+	public ServerProperties() {
+		super();
+	}
+    
+	private enum Command {
         SERVERENCODING("server.encoding"),
         CLEARERROR("cmd.clear.error"),
         CLOSE("cmd.close"),

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Converts a response from the server to an {@link MPDAlbum}
  *
@@ -15,6 +17,11 @@ import java.util.List;
 public class MPDAlbumConverter extends MPDConverter implements AlbumConverter {
 
     private static String delimitingPrefix = AlbumProcessor.getDelimitingPrefix();
+    
+    @Inject
+    public MPDAlbumConverter() {
+	    super();
+	}
 
     @Override
     public List<MPDAlbum> convertResponseToAlbum(List<String> list) {

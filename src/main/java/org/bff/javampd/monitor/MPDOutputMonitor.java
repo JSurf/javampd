@@ -1,7 +1,7 @@
 package org.bff.javampd.monitor;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.bff.javampd.admin.Admin;
 import org.bff.javampd.output.MPDOutput;
 import org.bff.javampd.output.OutputChangeEvent;

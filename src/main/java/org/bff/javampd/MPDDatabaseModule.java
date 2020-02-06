@@ -1,6 +1,5 @@
 package org.bff.javampd;
 
-import com.google.inject.AbstractModule;
 import org.bff.javampd.album.AlbumDatabase;
 import org.bff.javampd.album.MPDAlbumDatabase;
 import org.bff.javampd.artist.ArtistDatabase;
@@ -20,22 +19,33 @@ import org.bff.javampd.song.SongSearcher;
 import org.bff.javampd.year.DateDatabase;
 import org.bff.javampd.year.MPDDateDatabase;
 
+import dagger.Binds;
+import dagger.Module;
+
 /**
  * Initializes the DI bindings
  *
  * @author bill
  */
-public class MPDDatabaseModule extends AbstractModule {
-    @Override
-    protected void configure() {
-        bind(ArtistDatabase.class).to(MPDArtistDatabase.class);
-        bind(AlbumDatabase.class).to(MPDAlbumDatabase.class);
-        bind(SongDatabase.class).to(MPDSongDatabase.class);
-        bind(GenreDatabase.class).to(MPDGenreDatabase.class);
-        bind(PlaylistDatabase.class).to(MPDPlaylistDatabase.class);
-        bind(FileDatabase.class).to(MPDFileDatabase.class);
-        bind(DateDatabase.class).to(MPDDateDatabase.class);
-        bind(MusicDatabase.class).to(MPDMusicDatabase.class);
-        bind(SongSearcher.class).to(MPDSongSearcher.class);
-    }
+@Module
+public abstract class MPDDatabaseModule {
+    
+	@Binds
+	public abstract ArtistDatabase bindArtistDatabase(MPDArtistDatabase artistDatabase);
+	@Binds
+	public abstract AlbumDatabase bindAlbumDatabase(MPDAlbumDatabase albumDatabase);
+	@Binds
+	public abstract SongDatabase bindSongDatabase(MPDSongDatabase songDatabase);
+	@Binds
+	public abstract GenreDatabase bindGenreDatabase(MPDGenreDatabase obj);
+	@Binds
+    public abstract PlaylistDatabase bindPlaylistDatabase(MPDPlaylistDatabase obj);
+	@Binds
+    public abstract FileDatabase bindFileDatabase(MPDFileDatabase obj);
+	@Binds
+    public abstract DateDatabase bindDateDatabase(MPDDateDatabase obj);
+	@Binds
+    public abstract MusicDatabase bindMusicDatabase(MPDMusicDatabase obj);
+	@Binds
+    public abstract SongSearcher bindSongSearcher(MPDSongSearcher obj);
 }
